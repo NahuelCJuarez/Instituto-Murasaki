@@ -1,5 +1,6 @@
 import { Role } from "src/roles/roles.enum";
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { DiscordUser } from "./users.discord.entity";
 
 @Entity({
     name: 'users',
@@ -63,8 +64,7 @@ export class User {
      */
     @Column({
         type: 'varchar',
-        length: 30,
-        nullable: false,
+        length: 30
     })
     country: string;
 
@@ -72,9 +72,7 @@ export class User {
      * @description Fecha de nacimiento
      * @example '30-09-1992'
      */
-    @Column({
-        nullable: false
-    })
+    @Column()
     birthDate: Date
 
     /**
@@ -82,10 +80,10 @@ export class User {
      * @example '543334567894'
      */
     @Column({
-        type: 'number',
-        nullable: false
+        type: 'varchar',
+        nullable: true
     })
-    phoneNumber: number
+    phoneNumber: string
 
     /**
      * @description Nivel de conocimiento
@@ -99,13 +97,13 @@ export class User {
     level: string
 
     /**
-     * @description Estado del pago del curso
-     * @example 'Pago'
+     * @description Estado del pago del curso, false equivale a no pagado
+     * @example 'True'
      */
     @Column({
         default: false
     })
-    status: boolean
+    pago: boolean
 
     /**
      * @description Rol del usuario
@@ -130,6 +128,7 @@ export class User {
      * @description Datos de discord
      */
     @OneToOne(() => DiscordUser, (discordUser) => discordUser.user)
+    @JoinColumn()
     discordUser: DiscordUser
 
     /**
@@ -139,36 +138,4 @@ export class User {
     @Column({ default: false })
     isDeleted: boolean;
 
-}
-
-export class DiscordUser {
-    /**
-     * @description Usuario del instituto
-     */
-    @OneToOne(() => User, (user) => user.discordUser)
-    user: User
-
-    /**
-     * @description Id del usuario en Discord
-     */
-    @Column()
-    id: string
-
-    /**
-     * @description Nombre de usuario en Discord
-     */
-    @Column()
-    username: string
-
-    /**
-     * @description Hashtag diferenciador de usuarios con el mismo nombre
-     */
-    @Column()
-    discriminator: string
-
-    /**
-     * @description Imagen de perfil en discord
-     */
-    @Column()
-    avatar: string
 }

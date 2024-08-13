@@ -14,9 +14,9 @@ export class AuthService {
     async signUp(user: CreateUserDto){
         const { email, password, name, country, phoneNumber, birthDate } = user;
 
-        const foundedUser = await this.usersService.getUserByEmail(email);
+        // const foundedUser = await this.usersService.getUserByEmail(email);
 
-        if (foundedUser) throw new BadRequestException('El correo ya esta en uso');
+        // if (foundedUser) throw new BadRequestException('El correo ya esta en uso');
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
