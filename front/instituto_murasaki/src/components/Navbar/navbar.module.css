@@ -1,12 +1,72 @@
-.navbar {
-    height: 135px;
+  .navbar {
+    height: 115px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .header {
+    height: 85px;
     top: 0;
+    z-index: 1000;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    background-color: rgb(154, 13, 209);
+    background-color: #A53692;
+    color: #fff;
+    position: fixed;
+  }
+
+  .header img {
+    margin: 5px;
+    margin-left: 15px;
+    margin-right: 20px;
+    height: 70px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: aliceblue;
+    border-radius: 50%;
+  }
+
+  .header h1 {
+    font-size: 55px;
+    font-family: New Amsterdam, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    text-shadow: 
+    -2px -2px 0 #982785,
+    2px -2px 0 #982785,
+    -2px 2px 0 #982785,
+    2px 2px 0 #982785;
+  }
+
+  .left {
+    display: flex;
+    align-items: center;
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    margin-right: 40px;
+    height: 35px;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    color: #982785;
+    border: solid;
+    border-width: 5px;
+    border-color: #8b257a;
+    border-radius: 9999px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.5s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .button:hover {
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.3);
   }
   .container {
     display: 'flex';
@@ -16,8 +76,35 @@
     margin: '0 auto';
   }
   .link {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: Teko, New Amsterdam, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     color: '#fff';
     text-decoration: 'none';
-    font-size: '1.2rem';
+    font-size: 30px;
+    text-decoration: none;
+  }
+
+  .navLinks {
+    display: flex;
+    justify-content: center;
+    background-color: #8a2479;
+    height: 30px;
+    margin-top: 85px;
+    z-index: 999;
+  }
+  
+  .navLink {
+    color: #fff;
+    text-decoration: none;
+    font-family: Teko, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 25px;
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+  }
+  
+  .navLink:hover {
+    background-color: #982785;
+    border-radius: 5px;
   }
