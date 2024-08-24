@@ -1,0 +1,94 @@
+.bg {
+    background-image: url("./wallpaperflare.com_wallpaper.jpg");
+background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.RegForm {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+    width: 600px;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.formField {
+  flex: 0 0 48%; /* Esto hace que cada campo ocupe el 48% del ancho del contenedor */
+  margin-bottom: 15px;
+}
+
+.formField.fullWidth {
+  flex: 0 0 100%; /* Esto es para campos que deberían ocupar todo el ancho (por ejemplo, botones) */
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+}
+
+.fullWidthField {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .formField50 {
+    flex: 0 0 48%;
+  }
+  
+  .registerButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    height: 30px;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    text-decoration: none;
+    color: #982785;
+    font-size: 28px;
+    font-family: Teko, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    border: solid;
+    border-width: 2px;
+    border-color: #8b257a;
+    border-radius: 9999px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.5s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }

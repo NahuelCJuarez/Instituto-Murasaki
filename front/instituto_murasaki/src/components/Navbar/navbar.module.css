@@ -45,13 +45,94 @@
     align-items: center;
   }
 
+  .loginMenu {
+    position: absolute;
+    top: 85px;
+    right: 40px;
+    background-color: #A53692;
+    padding: 1rem;
+    border-style: solid;
+    border-color: #982785;
+    border-radius: 9%;
+    border-width: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .loginMenu p {
+    font-family: Teko, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    color: #fff;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .inputField {
+    display: block;
+    width: 90%;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .loginButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    color: #982785;
+    font-size: 25px;
+    font-family: Teko, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    border: solid;
+    border-width: 5px;
+    border-color: #8b257a;
+    border-radius: 9999px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.5s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .registerButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    height: 30px;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    text-decoration: none;
+    color: #982785;
+    font-size: 28px;
+    font-family: Teko, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    border: solid;
+    border-width: 5px;
+    border-color: #8b257a;
+    border-radius: 9999px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.5s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
   .button {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 10px;
     margin-right: 40px;
-    height: 35px;
+    height: 50px;
     padding: 0.5rem 1rem;
     background-color: #fff;
     color: #982785;
@@ -78,7 +159,6 @@
   .link {
     font-family: Teko, New Amsterdam, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     color: '#fff';
-    text-decoration: 'none';
     font-size: 30px;
     text-decoration: none;
   }
@@ -90,6 +170,8 @@
     height: 30px;
     margin-top: 85px;
     z-index: 999;
+    width: 100%;
+    position: fixed;
   }
   
   .navLink {
