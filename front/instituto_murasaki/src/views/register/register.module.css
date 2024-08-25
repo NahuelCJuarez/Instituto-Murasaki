@@ -16,7 +16,7 @@ background-size: cover;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     opacity: 0;
     animation: fadeIn 1s ease-in-out forwards;
-    width: 600px;
+    width: 700px;
   }
   
   @keyframes fadeIn {
@@ -40,17 +40,67 @@ background-size: cover;
 }
 
 .formField {
-  flex: 0 0 48%; /* Esto hace que cada campo ocupe el 48% del ancho del contenedor */
-  margin-bottom: 15px;
+  flex: 0 0 48%;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  height: 35px;
+  background-color: white;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
+
+select {
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  height: auto;
+  line-height: 1.5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #982785;
+}
+
+select {
+  font-size: 12px;
+}
+
+
+.errorMessage {
+  color: red;
+  font-size: 0.875rem;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  white-space: nowrap;
 }
 
 .formField.fullWidth {
-  flex: 0 0 100%; /* Esto es para campos que deberían ocupar todo el ancho (por ejemplo, botones) */
+  flex: 0 0 100%;
 }
 
 label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 button {
@@ -72,7 +122,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;

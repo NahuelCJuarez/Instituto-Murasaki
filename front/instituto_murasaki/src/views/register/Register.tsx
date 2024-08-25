@@ -13,10 +13,10 @@ const Register: React.FC = () => {
     lastName: Yup.string().required('El apellido es requerido'),
     password: Yup.string()
       .min(8, 'La contraseña debe tener al menos 8 caracteres')
-      .matches(/[A-Z]/, 'La contraseña debe incluir al menos una letra mayúscula')
+      .matches(/[A-Z]/, 'Debe incluir al menos una letra mayúscula')
       .matches(/[a-z]/, 'La contraseña debe incluir al menos una letra minúscula')
       .matches(/\d/, 'La contraseña debe incluir al menos un número')
-      .matches(/[@$!%*?&]/, 'La contraseña debe incluir al menos un caracter especial')
+      .matches(/[@$!%*?&]/, 'Debe incluir al menos un caracter especial')
       .required('La contraseña es requerida'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password')], 'Las contraseñas deben coincidir')
@@ -47,7 +47,9 @@ const Register: React.FC = () => {
     birthDate: string;
     phoneNumber: string;
   }) => {
+    
     try {
+      console.log('a');
       const response = await axios.post('http://localhost:3000/auth/signup', values);
       console.log('Registro exitoso:', response.data);
       //manejar el redireccionamiento y mostrar un mensaje de éxito
@@ -81,37 +83,37 @@ const Register: React.FC = () => {
                   <div className={styles.formField}>
                     <label htmlFor="name">Nombre:</label>
                     <Field type="text" name="name" />
-                    <ErrorMessage name="name" component="div" />
+                    <ErrorMessage name="name" component="div" className={styles.errorMessage} />
                   </div>
 
                   <div className={styles.formField}>
                     <label htmlFor="lastName">Apellido:</label>
                     <Field type="text" name="lastName" />
-                    <ErrorMessage name="lastName" component="div" />
+                    <ErrorMessage name="lastName" component="div" className={styles.errorMessage} />
                   </div>
 
                   <div className={styles.formField}>
                     <label htmlFor="password">Contraseña:</label>
                     <Field type="password" name="password" />
-                    <ErrorMessage name="password" component="div" />
+                    <ErrorMessage name="password" component="div" className={styles.errorMessage} />
                   </div>
 
                   <div className={styles.formField}>
                     <label htmlFor="confirmPassword">Repetir contraseña:</label>
                     <Field type="password" name="confirmPassword" />
-                    <ErrorMessage name="confirmPassword" component="div" />
+                    <ErrorMessage name="confirmPassword" component="div" className={styles.errorMessage} />
                   </div>
 
                   <div className={styles.formField}>
                     <label htmlFor="email">Correo electrónico:</label>
                     <Field type="email" name="email" />
-                    <ErrorMessage name="email" component="div" />
+                    <ErrorMessage name="email" component="div" className={styles.errorMessage} />
                   </div>
 
                   <div className={styles.formField}>
                     <label htmlFor="country">País:</label>
                     <Field type="text" name="country" />
-                    <ErrorMessage name="country" component="div" />
+                    <ErrorMessage name="country" component="div" className={styles.errorMessage} />
                   </div>
 
                   <div className={styles.fullWidthField}>
@@ -128,7 +130,7 @@ const Register: React.FC = () => {
                           {years.map(year => <option key={year} value={year}>{year}</option>)}
                         </Field>
                       </div>
-                      <ErrorMessage name="birthDate" component="div" />
+                      <ErrorMessage name="birthDate" component="div" className={styles.errorMessage} />
                     </div>
 
                     <div className={styles.formField50}>
@@ -137,6 +139,10 @@ const Register: React.FC = () => {
                         country={'ar'}
                         value={''}
                         onChange={(phone) => setFieldValue('phoneNumber', phone)}
+                        inputStyle={{
+                          height: "35px",
+                          width: "100%",
+                        }}
                         autoFormat={false}
                       />
                     </div>
