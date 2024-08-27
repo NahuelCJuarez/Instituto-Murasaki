@@ -47,9 +47,7 @@ const Register: React.FC = () => {
     birthDate: string;
     phoneNumber: string;
   }) => {
-    
     try {
-      console.log('a');
       const response = await axios.post('http://localhost:3000/auth/signup', values);
       console.log('Registro exitoso:', response.data);
       //manejar el redireccionamiento y mostrar un mensaje de éxito
@@ -74,7 +72,11 @@ const Register: React.FC = () => {
             phoneNumber: '',
           }}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}
+          onSubmit={(values, { setSubmitting }) => {
+            console.log("Formulario enviado");
+            handleSubmit(values);
+            setSubmitting(false);
+          }}
         >
           {({ isSubmitting, setFieldValue }) => (
             <Form>
@@ -82,66 +84,123 @@ const Register: React.FC = () => {
                 <div className={styles.formGroup}>
                   <div className={styles.formField}>
                     <label htmlFor="name">Nombre:</label>
-                    <Field type="text" name="name" />
+                    <Field id="name" type="text" name="name" autoComplete="name" />
                     <ErrorMessage name="name" component="div" className={styles.errorMessage} />
                   </div>
 
                   <div className={styles.formField}>
                     <label htmlFor="lastName">Apellido:</label>
-                    <Field type="text" name="lastName" />
+                    <Field id="lastName" type="text" name="lastName" />
                     <ErrorMessage name="lastName" component="div" className={styles.errorMessage} />
                   </div>
 
                   <div className={styles.formField}>
                     <label htmlFor="password">Contraseña:</label>
-                    <Field type="password" name="password" />
+                    <Field id="password" type="password" name="password" />
                     <ErrorMessage name="password" component="div" className={styles.errorMessage} />
                   </div>
 
                   <div className={styles.formField}>
                     <label htmlFor="confirmPassword">Repetir contraseña:</label>
-                    <Field type="password" name="confirmPassword" />
+                    <Field id="confirmPassword" type="password" name="confirmPassword" />
                     <ErrorMessage name="confirmPassword" component="div" className={styles.errorMessage} />
                   </div>
 
                   <div className={styles.formField}>
                     <label htmlFor="email">Correo electrónico:</label>
-                    <Field type="email" name="email" />
+                    <Field id="email" type="email" name="email" autoComplete="email" />
                     <ErrorMessage name="email" component="div" className={styles.errorMessage} />
                   </div>
 
                   <div className={styles.formField}>
                     <label htmlFor="country">País:</label>
-                    <Field type="text" name="country" />
+                    <Field id="country" type="text" name="country" autoComplete="country" />
                     <ErrorMessage name="country" component="div" className={styles.errorMessage} />
                   </div>
 
                   <div className={styles.fullWidthField}>
                     <div className={styles.formField50}>
-                      <label>Fecha de nacimiento:</label>
+                      <label htmlFor="birthDate">Fecha de nacimiento:</label>
                       <div style={{ display: 'flex', gap: '0.5rem' }}>
-                        <Field as="select" name="birthDateDay">
-                          {days.map(day => <option key={day} value={day}>{day}</option>)}
+                        <Field
+                          id="birthDateDay"
+                          as="select"
+                          name="birthDateDay"
+                          onChange={(e: any) => {
+                            const day = e.target.value;
+                            const month = (document.getElementById('birthDateMonth') as HTMLSelectElement)?.value;
+                            const year = (document.getElementById('birthDateYear') as HTMLSelectElement)?.value;
+                            const birthDate = `${year}-${month}-${day}`;
+                            setFieldValue('birthDateDay', day);
+                            setFieldValue('birthDate', birthDate);
+                            console.log("Día de nacimiento:", day);
+                          }}
+                        >
+                          {days.map(day => (
+                            <option key={day} value={day}>
+                              {day}
+                            </option>
+                          ))}
                         </Field>
-                        <Field as="select" name="birthDateMonth">
-                          {months.map((month, index) => <option key={index} value={index + 1}>{month}</option>)}
+                        <Field
+                          id="birthDateMonth"
+                          as="select"
+                          name="birthDateMonth"
+                          onChange={(e: any) => {
+                            const month = e.target.value;
+                            const day = (document.getElementById('birthDateDay') as HTMLSelectElement)?.value;
+                            const year = (document.getElementById('birthDateYear') as HTMLSelectElement)?.value;
+                            const birthDate = `${year}-${month}-${day}`;
+                            setFieldValue('birthDateMonth', month);
+                            setFieldValue('birthDate', birthDate);
+                            console.log("Mes de nacimiento:", month);
+                          }}
+                        >
+                          {months.map((month, index) => (
+                            <option key={index} value={index + 1}>
+                              {month}
+                            </option>
+                          ))}
                         </Field>
-                        <Field as="select" name="birthDateYear">
-                          {years.map(year => <option key={year} value={year}>{year}</option>)}
+                        <Field
+                          id="birthDateYear"
+                          as="select"
+                          name="birthDateYear"
+                          onChange={(e: any) => {
+                            const year = e.target.value;
+                            const day = (document.getElementById('birthDateDay') as HTMLSelectElement)?.value;
+                            const month = (document.getElementById('birthDateMonth') as HTMLSelectElement)?.value;
+                            const birthDate = `${year}-${month}-${day}`;
+                            setFieldValue('birthDateYear', year);
+                            setFieldValue('birthDate', birthDate);
+                            console.log("Año de nacimiento:", year);
+                          }}
+                        >
+                          {years.map(year => (
+                            <option key={year} value={year}>
+                              {year}
+                            </option>
+                          ))}
                         </Field>
                       </div>
                       <ErrorMessage name="birthDate" component="div" className={styles.errorMessage} />
                     </div>
 
                     <div className={styles.formField50}>
-                      <label htmlFor="phoneNumber">Número de teléfono:</label>
+                      <label htmlFor="phoneInput">Número de teléfono:</label>
                       <PhoneInput
                         country={'ar'}
                         value={''}
-                        onChange={(phone) => setFieldValue('phoneNumber', phone)}
+                        onChange={(phone) => {
+                          console.log("Teléfono actualizado:", phone);
+                          setFieldValue('phoneNumber', phone)
+                        }}
                         inputStyle={{
                           height: "35px",
                           width: "100%",
+                        }}
+                        inputProps={{
+                          id: 'phoneInput'
                         }}
                         autoFormat={false}
                       />
