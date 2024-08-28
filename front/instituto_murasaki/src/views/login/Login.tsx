@@ -2,8 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import styles from "../../components/Navbar/navbar.module.css"
+import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+
   const validationSchema = Yup.object({
     email: Yup.string().email('Correo inválido').required('El correo es requerido'),
     password: Yup.string().required('La contraseña es requerida'),
@@ -13,7 +17,7 @@ const Login: React.FC = () => {
     try {
       const response = await axios.post('http://localhost:3000/auth/signin', values);
       console.log('Inicio de sesión exitoso:', response.data);
-      //manejar el redireccionamiento y guardar el token de sesión
+      navigate('/discord');
     } catch (error) {
       console.error('Error en el inicio de sesión:', error);
     }
@@ -21,7 +25,6 @@ const Login: React.FC = () => {
 
   return (
     <div>
-      <h2>Inicio de Sesión</h2>
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={validationSchema}
@@ -30,18 +33,16 @@ const Login: React.FC = () => {
         {({ isSubmitting }) => (
           <Form>
             <div>
-              <label htmlFor="email">Correo electrónico:</label>
-              <Field type="email" name="email" />
+              <Field type="email" name="email" placeholder="email" className={styles.inputField}/>
               <ErrorMessage name="email" component="div" />
             </div>
 
             <div>
-              <label htmlFor="password">Contraseña:</label>
-              <Field type="password" name="password" />
+              <Field type="password" name="password" placeholder="contraseña" className={styles.inputField}/>
               <ErrorMessage name="password" component="div" />
             </div>
 
-            <button type="submit" disabled={isSubmitting}>
+            <button type="submit" className={styles.loginButton} disabled={isSubmitting}>
               Iniciar Sesión
             </button>
           </Form>

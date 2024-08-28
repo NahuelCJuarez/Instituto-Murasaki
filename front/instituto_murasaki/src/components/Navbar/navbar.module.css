@@ -46,9 +46,9 @@
   }
 
   .loginMenu {
-    position: absolute;
+    position: fixed;
     top: 85px;
-    right: 40px;
+    right: 0px;
     background-color: #A53692;
     padding: 1rem;
     border-style: solid;

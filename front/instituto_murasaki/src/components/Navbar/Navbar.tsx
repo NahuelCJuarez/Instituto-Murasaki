@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from "./navbar.module.css"
 import Logo from "./Murasaki_logo.png"
+import Login from "../../views/login/Login"
 
 const Navbar: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const toggleLogin = () => {
+    setIsLoginOpen(!isLoginOpen);
   };
 
   return (
@@ -17,7 +18,7 @@ const Navbar: React.FC = () => {
           <img src={Logo} alt="Logo" />
           <h1>Instituto Murasaki</h1>
         </div>
-        <button className={`${styles.link} ${styles.button}`} onClick={toggleMenu}>
+        <button className={`${styles.link} ${styles.button}`} onClick={toggleLogin}>
           Ingresar
         </button>
       </div>
@@ -29,15 +30,13 @@ const Navbar: React.FC = () => {
         <Link to="/Discord" className={styles.navLink}>Discord</Link>
       </div>
 
-      {isMenuOpen && (
+      {isLoginOpen && (
         <div className={styles.loginMenu}>
-          <form>
-            <input type="email" placeholder="Email" className={styles.inputField} />
-            <input type="password" placeholder="Contraseña" className={styles.inputField} />
-            <button type="submit" className={styles.loginButton}>Iniciar Sesión</button>
-          </form>
+          <div className='LoginModal'>
+            <Login />
+          </div>
           <p>¿Aún no te registraste?</p>
-          <Link to="/Register" className={styles.registerButton} onClick={toggleMenu}>
+          <Link to="/Register" className={styles.registerButton} onClick={toggleLogin}>
             Registrarse
           </Link>
         </div>

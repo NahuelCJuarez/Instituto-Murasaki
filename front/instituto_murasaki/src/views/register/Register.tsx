@@ -1,22 +1,88 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import * as Yup from 'yup';
 import styles from './register.module.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { Slide, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Register: React.FC = () => {
+  const PasswordField = ({ name }: { name: string }) => {
+    const [showPassword, setShowPassword] = useState(false);
+  
+    const togglePasswordVisibility = () => {
+      setShowPassword(!showPassword);
+    };
+  
+    return (
+      <div style={{ position: 'relative' }}>
+        <Field
+          id={"password"}
+          name={name}
+          type={showPassword ? 'text' : 'password'}
+          style={{ paddingRight: '40px' }}
+        />
+        <div
+          onClick={togglePasswordVisibility}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            right: '10px',
+            transform: 'translateY(-50%)',
+            cursor: 'pointer',
+          }}
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </div>
+      </div>
+    );
+  };
+
+  const ConfirmPasswordField = ({ name }: { name: string }) => {
+    const [showPassword, setShowPassword] = useState(false);
+  
+    const togglePasswordVisibility = () => {
+      setShowPassword(!showPassword);
+    };
+  
+    return (
+      <div style={{ position: 'relative' }}>
+        <Field
+          id={"confirmPassword"}
+          name={name}
+          type={showPassword ? 'text' : 'password'}
+          style={{ paddingRight: '40px' }}
+        />
+        <div
+          onClick={togglePasswordVisibility}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            right: '10px',
+            transform: 'translateY(-50%)',
+            cursor: 'pointer',
+          }}
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </div>
+      </div>
+    );
+  };
+
+  const navigate = useNavigate();
+
   const validationSchema = Yup.object({
     email: Yup.string().email('Correo inválido').required('El correo es requerido'),
     name: Yup.string().required('El nombre es requerido'),
     lastName: Yup.string().required('El apellido es requerido'),
     password: Yup.string()
-      .min(8, 'La contraseña debe tener al menos 8 caracteres')
-      .matches(/[A-Z]/, 'Debe incluir al menos una letra mayúscula')
+      .min(6, 'La contraseña debe tener al menos 6 caracteres')
       .matches(/[a-z]/, 'La contraseña debe incluir al menos una letra minúscula')
       .matches(/\d/, 'La contraseña debe incluir al menos un número')
-      .matches(/[@$!%*?&]/, 'Debe incluir al menos un caracter especial')
       .required('La contraseña es requerida'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password')], 'Las contraseñas deben coincidir')
@@ -26,6 +92,7 @@ const Register: React.FC = () => {
       .max(new Date(), 'La fecha de nacimiento no puede ser en el futuro')
       .required('La fecha de nacimiento es requerida'),
     phoneNumber: Yup.string()
+      .min(6, 'Ingresa un numero de teléfono')
       .matches(/^\+?\d{10,15}$/, 'Número de teléfono inválido')
       .required('El número de teléfono es requerido'),
   });
@@ -50,9 +117,33 @@ const Register: React.FC = () => {
     try {
       const response = await axios.post('http://localhost:3000/auth/signup', values);
       console.log('Registro exitoso:', response.data);
-      //manejar el redireccionamiento y mostrar un mensaje de éxito
+      toast.success('Bienvenido al Instituto Murasaki!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Slide,
+      });
+      setTimeout(() => {
+        navigate('/discord');
+      }, 3000);
     } catch (error) {
       console.error('Error en el registro:', error);
+      toast.error('No se completo el registo, porfavor varifica los campos', {
+        position: "bottom-right",
+        autoClose: 10000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Slide,
+      });
     }
   };
 
@@ -96,13 +187,13 @@ const Register: React.FC = () => {
 
                   <div className={styles.formField}>
                     <label htmlFor="password">Contraseña:</label>
-                    <Field id="password" type="password" name="password" />
+                    <PasswordField name='password' />
                     <ErrorMessage name="password" component="div" className={styles.errorMessage} />
                   </div>
 
                   <div className={styles.formField}>
                     <label htmlFor="confirmPassword">Repetir contraseña:</label>
-                    <Field id="confirmPassword" type="password" name="confirmPassword" />
+                    <ConfirmPasswordField name="confirmPassword" />
                     <ErrorMessage name="confirmPassword" component="div" className={styles.errorMessage} />
                   </div>
 
