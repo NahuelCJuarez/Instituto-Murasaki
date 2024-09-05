@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from "./views/home/home";
 import Login from "./views/login/Login";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer"
 import './app.css'
 import Register from './views/register/Register';
 import Discord from './views/discord/Discord';
@@ -19,6 +20,7 @@ const App: React.FC = () => {
         <Route path='/discord' element={<Discord />} />
         <Route path='/student' element={<Student />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };
