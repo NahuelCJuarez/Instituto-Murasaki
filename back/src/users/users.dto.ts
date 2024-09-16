@@ -24,12 +24,12 @@ export class CreateUserDto {
 
     @IsNotEmpty()
     @IsString()
-    @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, {
+    @Matches(/^(?=.*[a-z])(?=.*[0-9])/, {
         message:
-            'La contraseña debe tener una letra mayuscula, una letra minuscula, un numero y un caracter especial: !@#$%^&* ',
+            'La contraseña debe tener mas de 6 caracteres e incluir letras y numeros',
     })
-    @MinLength(8)
-    @MaxLength(15)
+    @MinLength(6)
+    @MaxLength(20)
     password: string;
 
     @IsNotEmpty()

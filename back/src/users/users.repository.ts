@@ -3,11 +3,13 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "./users.entity";
 import { Repository } from "typeorm";
 import { CreateUserDto } from "./users.dto";
+// import { DiscordUser } from "./users.discord.entity";
+
 
 @Injectable()
 export class UsersRepository{
     constructor (
-        @InjectRepository(User) private usersRepository: Repository<User>,
+        @InjectRepository(User) private usersRepository: Repository<User>
     ) {}
 
     async getUsers(page?: number, limit?: number){
@@ -37,7 +39,8 @@ export class UsersRepository{
 
     async getUserByEmail(email: string){
         const user = await this.usersRepository.findOne({
-            where: {email, isDeleted: false}
+            where: {email, isDeleted: false},
+            relations: {discordUser: true},
         })
         if(!user) throw new NotFoundException('No se encontro ningun usuario con ese correo');
 
@@ -54,7 +57,16 @@ export class UsersRepository{
         return userNoPassword;
     }
 
-    async updateUser(){}
+    async updateUser(id: string, data: Partial<User>){
+        const foundUser = await this.usersRepository.findOneBy({ id });
+    
+    if (!foundUser) throw new NotFoundException('No se encontró al usuario');
+
+    await this.usersRepository.update(id, data);
+
+    const updatedUser = await this.usersRepository.findOneBy({ id });
+    return updatedUser;
+    }
 
     async updateAllDiscordUsers(){}
 

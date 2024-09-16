@@ -24,16 +24,16 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  const firebaseApp = initializeApp({
-    apiKey: "AIzaSyA8pXClGU5pe7sp0GwYrX5czuwIuAX-Rv8",
-    authDomain: "instituto-murasaki.firebaseapp.com",
-    projectId: "instituto-murasaki",
-    storageBucket: "instituto-murasaki.appspot.com",
-    messagingSenderId: "985050160926",
-    appId: "1:985050160926:web:576240b65d6510eff8b30f",
-    measurementId: "G-SHKHSPX6FD"
-  });
-  const storage = getStorage(firebaseApp)
+  // const firebaseApp = initializeApp({
+  //   apiKey: "AIzaSyA8pXClGU5pe7sp0GwYrX5czuwIuAX-Rv8",
+  //   authDomain: "instituto-murasaki.firebaseapp.com",
+  //   projectId: "instituto-murasaki",
+  //   storageBucket: "instituto-murasaki.appspot.com",
+  //   messagingSenderId: "985050160926",
+  //   appId: "1:985050160926:web:576240b65d6510eff8b30f",
+  //   measurementId: "G-SHKHSPX6FD"
+  // });
+  // const storage = getStorage(firebaseApp)
   
 
   await app.listen(3000);

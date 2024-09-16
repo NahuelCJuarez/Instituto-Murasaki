@@ -56,7 +56,7 @@ export class User {
         length: 200,
         nullable: false,
     })
-    password: string;
+    password?: string;
 
     /**
      * @description El pais de origen del usuario
