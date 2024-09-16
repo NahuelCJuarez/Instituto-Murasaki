@@ -1,6 +1,6 @@
 import styles from "./student.module.css"
 
-const Student : React.FC = () => {
+const Alumno : React.FC = () => {
     return (
         <div className={styles.headerContainer}>
             <h1 className={styles.header}>-Informnacion de la cuenta-</h1>
@@ -8,4 +8,4 @@ const Student : React.FC = () => {
     )
 }
 
-export default Student;
+export default Alumno;

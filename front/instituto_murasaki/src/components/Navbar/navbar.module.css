@@ -57,7 +57,7 @@
     border-width: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1001;
-    height: 300px;
+    height: auto;
     display: flex;
     flex-direction: column;
   }

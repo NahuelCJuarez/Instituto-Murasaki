@@ -9,15 +9,26 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
 
   const validationSchema = Yup.object({
-    email: Yup.string().email('Correo inválido').required('El correo es requerido'),
-    password: Yup.string().required('La contraseña es requerida'),
+    email: Yup.string().email('Correo inválido').required('Ingresa tu correo'),
+    password: Yup.string().required('Ingresa tu contraseña'),
   });
 
   const handleSubmit = async (values: { email: string; password: string }) => {
     try {
       const response = await axios.post('http://localhost:3000/auth/signin', values);
       console.log('Inicio de sesión exitoso:', response.data);
-      navigate('/discord');
+      const token = response.data.token;
+      const userId = response.data.userId
+      localStorage.setItem('token', token);
+      localStorage.setItem('userId', userId);
+      console.log('token guardado', token, 'userid guardado', userId);
+      console.log(response.data);
+      
+      if (response.data.discordUser === null) {
+        navigate('/discord');
+      } else {
+        navigate('/alumno');
+      }
     } catch (error) {
       console.error('Error en el inicio de sesión:', error);
     }

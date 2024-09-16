@@ -6,7 +6,7 @@ import Footer from "./components/Footer/Footer"
 import './app.css'
 import Register from './views/register/Register';
 import Discord from './views/discord/Discord';
-import Student from './views/student/Student';
+import Alumno from './views/alumno/Alumno';
 
 
 const App: React.FC = () => {
@@ -18,7 +18,7 @@ const App: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path='/Register' element={<Register />} />
         <Route path='/discord' element={<Discord />} />
-        <Route path='/student' element={<Student />} />
+        <Route path='/alumno' element={<Alumno />} />
       </Routes>
       <Footer />
     </Router>
