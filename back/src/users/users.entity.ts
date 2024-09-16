@@ -1,6 +1,7 @@
-import { Role } from "src/roles/roles.enum";
+import { Role } from "src/enums/roles.enum";
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { DiscordUser } from "./users.discord.entity";
+import { Level } from "src/enums/level.enum";
 
 @Entity({
     name: 'users',
@@ -90,11 +91,11 @@ export class User {
      * @example 'N6-1'
      */
     @Column({
-        type: 'varchar',
-        length: 4,
-        nullable: true,
+        type: 'enum',
+        enum: Level,
+        default: Level.n51
     })
-    level: string
+    level: Level
 
     /**
      * @description Estado del pago del curso, false equivale a no pagado
