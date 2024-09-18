@@ -57,6 +57,7 @@ export class AuthService {
             token,
             userId: user.id,
             discordUser: user.discordUser,
+            role: user.role
         };
     }
 

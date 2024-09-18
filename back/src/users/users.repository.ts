@@ -42,8 +42,6 @@ export class UsersRepository{
             where: {email, isDeleted: false},
             relations: {discordUser: true},
         })
-        if(!user) throw new NotFoundException('No se encontro ningun usuario con ese correo');
-
         return user;
     }
 

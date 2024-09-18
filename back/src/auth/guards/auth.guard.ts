@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate {
                     payload.role = [Role.Profesor];
                     break;
                 case 'user':
-                    payload.role = [Role.User];
+                    payload.role = [Role.Alumno];
                     break;
                 default:
                     throw new UnauthorizedException('Rol invalido')
