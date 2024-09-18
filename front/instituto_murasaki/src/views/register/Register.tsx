@@ -13,11 +13,11 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 const Register: React.FC = () => {
   const PasswordField = ({ name }: { name: string }) => {
     const [showPassword, setShowPassword] = useState(false);
-  
+
     const togglePasswordVisibility = () => {
       setShowPassword(!showPassword);
     };
-  
+
     return (
       <div style={{ position: 'relative' }}>
         <Field
@@ -44,11 +44,11 @@ const Register: React.FC = () => {
 
   const ConfirmPasswordField = ({ name }: { name: string }) => {
     const [showPassword, setShowPassword] = useState(false);
-  
+
     const togglePasswordVisibility = () => {
       setShowPassword(!showPassword);
     };
-  
+
     return (
       <div style={{ position: 'relative' }}>
         <Field
@@ -115,8 +115,12 @@ const Register: React.FC = () => {
     phoneNumber: string;
   }) => {
     try {
-      const response = await axios.post('http://localhost:3000/auth/signup', values);
-      console.log('Registro exitoso:', response.data);
+      const credentials = {
+        email: values.email,
+        password: values.password
+      }
+      const register = await axios.post('http://localhost:3000/auth/signup', values);
+      console.log('Registro exitoso:', register.data);
       toast.success('Bienvenido al Instituto Murasaki!', {
         position: "bottom-right",
         autoClose: 5000,
@@ -128,9 +132,37 @@ const Register: React.FC = () => {
         theme: "light",
         transition: Slide,
       });
-      setTimeout(() => {
+
+      const response = await axios.post('http://localhost:3000/auth/signin', credentials);
+      console.log('Inicio de sesión exitoso:', response.data);
+      const token = response.data.token;
+      const userId = response.data.userId;
+      const userLevel = response.data.level;
+      const role = response.data.role;
+
+      localStorage.setItem('token', token);
+      localStorage.setItem('userId', userId);
+      localStorage.setItem('userLevel', userLevel);
+      localStorage.setItem('role', role);
+      // console.log('token guardado', token, 'userid guardado', userId, 'role guardado', role);
+
+      if (response.data.discordUser === null) {
         navigate('/discord');
-      }, 3000);
+      } else {
+        switch (response.data.role) {
+          case 'admin':
+            navigate('/admin');
+            break;
+          case 'alumno':
+            navigate('/alumno');
+            break;
+          case 'profesor':
+            navigate('/profesor');
+            break;
+          default:
+            console.error('Rol desconocido:', response.data.role);
+        }
+      }
     } catch (error) {
       console.error('Error en el registro:', error);
       toast.error('No se completo el registo, porfavor varifica los campos', {

@@ -18,16 +18,32 @@ const Login: React.FC = () => {
       const response = await axios.post('http://localhost:3000/auth/signin', values);
       console.log('Inicio de sesión exitoso:', response.data);
       const token = response.data.token;
-      const userId = response.data.userId
+      const userId = response.data.userId;
+      const userLevel = response.data.level;
+      const role = response.data.role;
+      console.log(response.data);
       localStorage.setItem('token', token);
       localStorage.setItem('userId', userId);
-      console.log('token guardado', token, 'userid guardado', userId);
-      console.log(response.data);
+      localStorage.setItem('userLevel', userLevel);
+      localStorage.setItem('role', role);
+      // console.log('token guardado', token, 'userid guardado', userId, 'role guardado', role);
       
       if (response.data.discordUser === null) {
         navigate('/discord');
       } else {
-        navigate('/alumno');
+        switch (response.data.role) {
+          case 'admin':
+            navigate('/admin');
+            break;
+          case 'alumno':
+            navigate('/alumno');
+            break;
+          case 'profesor':
+            navigate('/profesor');
+            break;
+          default:
+            console.error('Rol desconocido:', response.data.role);
+        }
       }
     } catch (error) {
       console.error('Error en el inicio de sesión:', error);
