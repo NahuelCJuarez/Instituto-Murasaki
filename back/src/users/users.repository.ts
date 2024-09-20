@@ -3,6 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "./users.entity";
 import { Repository } from "typeorm";
 import { CreateUserDto } from "./users.dto";
+import { Role } from "src/enums/roles.enum";
 // import { DiscordUser } from "./users.discord.entity";
 
 
@@ -17,13 +18,19 @@ export class UsersRepository{
             throw new BadRequestException('La pagina y el limite tienen que ser mayores a 0');
           }
 
+        if (!page && !limit) {
+            const allUsers = await this.usersRepository.find();
+            return allUsers;
+        }
         const skip = (page - 1) * limit;
         const users = await this.usersRepository.find({
-            where: { isDeleted: false },
+            // where: { isDeleted: false, role: Role.Alumno},
+            relations: {discordUser: true},
             take: limit,
             skip: skip,
         });
         
+        return users
     }
 
     async getUser(id: string){
