@@ -9,35 +9,53 @@
   flex-direction: column;
 }
 
-.userPanel {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  padding-left: 20px;
-  border: solid 2px red;
-}
-
-.userViews {
-  display: flex;
-  flex-direction: column;
+.userDashboard {
+  height: 80%;
+  width: 80%;
+  margin: auto;
   margin-top: 40px;
-  margin-bottom: 40px;
-  margin-left: 40px;
-  border-radius: 8px;
-  background-color: white;
-  height: auto;
-  width: 10%;
-  border: solid 2px red;
+  display: flex;
+  flex-direction: row;
 }
 
-.userViews button {
-  border-top: solid gray;
-  border-bottom: solid gray;
+.barraLateral {
+  display: flex;
+  flex-Direction: column;
+  justify-Content: flex-start;
+  background-Color: white;
+  height: 100%;
+  color: white;
+  width: 200px;
+  border-right: rgb(212, 212, 212);
 }
 
-.currentView {
-  border: solid 2px blue;
-  width: 60%;
-  margin: 40px;
-  border-radius: 8px;
+.vistaActual {
+  background-Color: white;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  box-Shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  overflow-Y: auto;
+}
+
+.button {
+  width: 100%;
+  height: 60px;
+  background: none;
+  border-bottom: solid 1px rgb(212, 212, 212);
+  color: rgb(61, 61, 61);
+  padding: 10px 0;
+  cursor: pointer;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: left;
+  margin: 0;
+  padding: 10px;
+}
+
+.activeButton {
+  background-color: #A53692;
+  font-weight: bold;
+  color: white;
 }
