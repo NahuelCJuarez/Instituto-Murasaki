@@ -5,6 +5,7 @@ import { Repository } from "typeorm";
 import { UsersRepository } from "./users.repository";
 import { User } from "./users.entity";
 import { CreateDiscordUserDto } from "./discord.dto";
+import axios from "axios";
 
 @Injectable()
 export class DiscordUserRepository{
@@ -29,4 +30,6 @@ export class DiscordUserRepository{
         const updatedUser = await this.usersRepository.updateUser(userId, {discordUser})
         return updatedUser;
     }
+
+    
 }

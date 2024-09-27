@@ -16,12 +16,24 @@ export class UsersService {
         return this.usersRepository.getUsers(page, limit);
     }
 
+    getMaestros(page?: number, limit?: number) {
+        return this.usersRepository.getMaestros(page, limit);
+    }
+
+    getDeleted(page?: number, limit?: number) {
+        return this.usersRepository.getDeleted(page,limit)
+    }
+ 
     getUser(id: string) {
         return this.usersRepository.getUser(id);
     }
 
     getUserByEmail(email: string) {
         return this.usersRepository.getUserByEmail(email);
+    }
+
+    searchUsers(term: string){
+        return this.usersRepository.searchUsers(term);
     }
 
     createUser(user: CreateUserDto) {
@@ -36,12 +48,12 @@ export class UsersService {
         return this.usersRepository.updateUser(id, user);
     }
 
-    updateAllDiscordUsers() {
-        return this.usersRepository.updateAllDiscordUsers();
+    getDiscordUserInfo(discordId: string) {
+        return this.usersRepository.getDiscordUserInfo(discordId);
     }
 
-    updateDiscordUser() {
-        return this.usersRepository.updateDiscordUser();
+    updateDiscordInfoForAllUsers() {
+        return this.usersRepository.updateDiscordInfoForAllUsers();
     }
 
 }

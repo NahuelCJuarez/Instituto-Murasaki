@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
                     payload.role = [Role.Admin];
                     break;
                 case 'profesor':
-                    payload.role = [Role.Profesor];
+                    payload.role = [Role.Maestro];
                     break;
                 case 'user':
                     payload.role = [Role.Alumno];

@@ -2,6 +2,7 @@ import { Role } from "src/enums/roles.enum";
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { DiscordUser } from "./users.discord.entity";
 import { Level } from "src/enums/level.enum";
+import { Pago } from "src/enums/pago";
 
 @Entity({
     name: 'users',
@@ -102,7 +103,9 @@ export class User {
      * @example 'True'
      */
     @Column({
-        default: false
+        type: 'enum',
+        enum: Pago,
+        default: Pago.noPago
     })
     pago: boolean
 
@@ -128,7 +131,7 @@ export class User {
     /**
      * @description Datos de discord
      */
-    @OneToOne(() => DiscordUser, (discordUser) => discordUser.user)
+    @OneToOne(() => DiscordUser,  { cascade: true })
     @JoinColumn()
     discordUser: DiscordUser
 
