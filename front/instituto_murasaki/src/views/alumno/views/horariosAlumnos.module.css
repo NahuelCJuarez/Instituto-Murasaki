@@ -1,0 +1,7 @@
+.horarios{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}

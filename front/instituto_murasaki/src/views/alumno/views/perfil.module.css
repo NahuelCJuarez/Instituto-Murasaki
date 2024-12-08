@@ -1,0 +1,116 @@
+.perfil {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.topSection {
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.nameLevel {
+    height: 70px;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 60px;
+}
+
+.nameLevel h1{
+    font-size: 55px;
+    margin-right: 50px;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.nameLevel .level{
+    font-size: 45px;
+    color: #A53692;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.picture {
+    width: 225px;
+    height: 225px;
+    border-radius: 50%;
+}
+
+
+.userInfo {
+    align-self: flex-start;
+    text-align: left;
+    font-size: 20px;
+    margin-left: 120px;
+    margin-bottom: 30px;
+}
+
+.headers {
+    font-weight: bold;
+    color: #A53692; 
+}
+
+.userInfo .p{
+    margin-bottom: 20px;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+
+.buttons {
+    display: flex;
+    justify-content: space-between; 
+    width: 100%;
+    padding: 20px;
+}
+
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+.edit {
+    font-weight: bold;
+    color: rgb(75, 75, 75);
+    align-self: flex-start;
+    margin-left: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.changePassword {
+    font-weight: bold;
+    color: rgb(75, 75, 75);
+    align-self: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.discord {
+    font-weight: bold;
+    align-self: flex-end;
+    margin-right: 50px;
+    background-color: rgb(88, 101, 242);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.intro {
+    margin-top: 30px;
+    width: 100%;
+    padding: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: #A53692;
+    color: white;
+    font-size: 20px;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}

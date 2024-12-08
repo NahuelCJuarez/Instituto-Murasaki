@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styles from "./student.module.css"
 import Perfil from "./views/Perfil";
-import Horarios from "./views/Horarios";
 import Material from "./views/Material";
 import Pagar from "./views/Pagar";
 import classNames from "classnames";
+import HorariosAlumnos from "./views/HorariosAlumnos";
 
 const Alumno: React.FC = () => {
     const [activeTab, setActiveTab] = useState('perfil');
@@ -14,7 +14,7 @@ const Alumno: React.FC = () => {
             case 'perfil':
                 return <Perfil />;
             case 'horarios':
-                return <Horarios />;
+                return <HorariosAlumnos />;
             case 'material':
                 return <Material />;
             case 'pagar':
